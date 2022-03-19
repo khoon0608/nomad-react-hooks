@@ -4,16 +4,29 @@ import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import useInput from "./hooks/use-input";
+import useTabs from "./hooks/use-tabs";
+
+const content = [
+  {
+    tap: "Section 1",
+    content: "Section 1 content",
+  },
+  {
+    tap: "Section 2",
+    content: "Section 2 content",
+  },
+];
+
+
 
 function App() {
-  const maxLen = (value) => !value.includes("@");
-  const name = useInput("Mr.", maxLen);
-
+  const { currentItem, changeItem } = useTabs(0, content);
   return (
     <div>
-      <h1>Hello</h1>
-      <input type='text' placeholder='Name' {...name} />
+      {content.map((section, index) => (
+        <button onClick={() => changeItem(index)}>{section.tap}</button>
+      ))}
+      <div>{currentItem.content}</div>
     </div>
   );
 }
