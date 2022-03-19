@@ -1,18 +1,14 @@
 /** @format */
 
+import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-function useInput(initialValue) {
-  const [value, setValue] = React.useState(initialValue);
-  const onChange = (event) => {
-    console.log(event.target);
-  };
-  return { value, onChange };
-}
+import useInput from "./hooks/use-input";
 
 function App() {
-  const name = useInput("Mr.");
+  const maxLen = (value) => !value.includes("@");
+  const name = useInput("Mr.", maxLen);
 
   return (
     <div>
