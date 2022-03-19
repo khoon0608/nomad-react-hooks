@@ -3,17 +3,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+function useInput(initialValue) {
+  const [value, setValue] = React.useState(initialValue);
+  const onChange = (event) => {
+    console.log(event.target);
+  };
+  return { value, onChange };
+}
+
 function App() {
-  const [count, setCount] = React.useState(0);
+  const name = useInput("Mr.");
 
   return (
     <div>
-      {count}
-      <button onClick={() => setCount((prevCount) => prevCount + 1)}></button>
+      <h1>Hello</h1>
+      <input type='text' placeholder='Name' {...name} />
     </div>
   );
 }
 
-// 훅을 사용하는 현재 방식
+// useInput을 사용하면 인풋의 입력을 다른 함수에서 처리할 수 있다.
 
 export default App;
