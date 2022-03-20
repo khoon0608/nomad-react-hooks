@@ -4,12 +4,17 @@ import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import useTitle from "./hooks/use-title";
-
 function App() {
-  const titleUpdater = useTitle("loading...");
-  setTimeout(() => titleUpdater("home") /* setTitle("home") */, 5000);
-  return <div></div>;
+  const inputRef = React.useRef();
+  setTimeout(() => {inputRef.current.focus();}, 3000);
+
+  // 3초 뒤 input에 focus 이벤트 발생
+
+  return (
+    <div>
+      <input ref={inputRef} type='text' />
+    </div>
+  );
 }
 
 export default App;
