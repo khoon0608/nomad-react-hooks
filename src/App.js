@@ -15,9 +15,9 @@ function App() {
     func();
   }, [number2]);
   // useEffect는 함수와 dependency를 인수로 받는다.
-  
+
   // component가 mount되는 즉시 func 실행하고
-  // number2의 값이 업데이트 될 때마다 실행
+  // dependency 배열 안의 값이 업데이트되면 실행
 
   return (
     <div>
