@@ -4,15 +4,20 @@ import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-function App() {
-  const inputRef = React.useRef();
-  setTimeout(() => {inputRef.current.focus();}, 3000);
+import useClick from "./hooks/use-click"
 
-  // 3초 뒤 input에 focus 이벤트 발생
+function App() {
+  function sayHello() {
+    alert("Hello");
+  }
+
+  const title = useClick(sayHello);
 
   return (
     <div>
-      <input ref={inputRef} type='text' />
+      <h1 id='test' ref={title}>
+        Click Me
+      </h1>
     </div>
   );
 }
