@@ -1,6 +1,8 @@
+/** @format */
+
 import React from "react";
 
-function useFadeIn() {
+function useFadeIn(duration) {
   const element = React.useRef();
 
   React.useEffect(() => {
@@ -8,7 +10,7 @@ function useFadeIn() {
       const { current } = element;
 
       current.style.opacity = 1;
-      current.style.transition = "5s";
+      current.style.transition = `opacity ${duration}s`;
     }
   }, []);
 
