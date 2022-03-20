@@ -1,9 +1,13 @@
+/** @format */
+
 import React from "react";
 
-function useConfirm(message = "", resolve, reject) {
+function useConfirm(message = "", onConfirm, onCancle) {
   function confirmAction() {
-    if (typeof resolve === "function" && window.confirm(message)) resolve();
-    else if (typeof reject === "function") reject();
+    if (typeof onConfirm !== "function" || typeof onCancle !== "function")
+      return;
+    if (window.confirm(message)) onConfirm();
+    else onCancle();
   }
 
   return confirmAction;
