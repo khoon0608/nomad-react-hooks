@@ -1,23 +1,24 @@
 /** @format */
 
-import { isElementType } from "@testing-library/user-event/dist/utils";
+import {
+  getMouseEventOptions,
+  isElementType,
+} from "@testing-library/user-event/dist/utils";
 import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import useFullscreen from "./hooks/use-fullscreen";
+import useNotification from "./hooks/use-notification";
+
+
 
 function App() {
-  const { element, onTrigger, exitFull, isFullscreen } = useFullscreen();
+  const triggerNotif = useNotification("Can blah blah", {
+    body: "I love blah blah"
+  });
   return (
-    <div ref={element} style={{ height: "1000vh" }}>
-      <img
-        src='https://i1.sndcdn.com/artworks-000108435472-8lhg5d-t500x500.jpg'
-        alt='img'
-      />
-      <button onClick={isFullscreen ? exitFull : onTrigger}>
-        {isFullscreen ? "exit Fullscreen" : "make fullscreen"}
-      </button>
+    <div style={{ height: "1000vh" }}>
+      <button onClick={triggerNotif}>click</button>
     </div>
   );
 }
