@@ -1,19 +1,23 @@
 /** @format */
 
+import { isElementType } from "@testing-library/user-event/dist/utils";
 import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import useScroll from "./hooks/use-scroll";
+import useFullscreen from "./hooks/use-fullscreen";
 
 function App() {
-  const { y: height } = useScroll();
-
+  const { element, onTrigger, exitFull, isFullscreen } = useFullscreen();
   return (
-    <div style={{ height: "1000vh" }}>
-      <h1 style={{ position: "fixed", color: height > 1000 ? "red" : "blue" }}>
-        Hi
-      </h1>
+    <div ref={element} style={{ height: "1000vh" }}>
+      <img
+        src='https://i1.sndcdn.com/artworks-000108435472-8lhg5d-t500x500.jpg'
+        alt='img'
+      />
+      <button onClick={isFullscreen ? exitFull : onTrigger}>
+        {isFullscreen ? "exit Fullscreen" : "make fullscreen"}
+      </button>
     </div>
   );
 }
