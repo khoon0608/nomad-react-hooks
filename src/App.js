@@ -4,15 +4,17 @@ import { validate } from "json-schema";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import useNetwork from "./hooks/use-network";
+import useScroll from "./hooks/use-scroll";
 
 function App() {
-  const handleNetworkChange = online => {
-    console.log(online ? "We just went online" : "we are just went offline");
-  }
-  const onLine = useNetwork(handleNetworkChange);
+  const { y: height } = useScroll();
+
   return (
-    <div>{onLine ? "online" : "offline"}</div>
+    <div style={{ height: "1000vh" }}>
+      <h1 style={{ position: "fixed", color: height > 1000 ? "red" : "blue" }}>
+        Hi
+      </h1>
+    </div>
   );
 }
 
